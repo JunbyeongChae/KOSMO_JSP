@@ -24,11 +24,13 @@ repositories {
 }
 
 dependencies {
-  implementation 'com.google.code.gson:gson:2.11.0'
-  implementation 'org.mybatis:mybatis:3.5.17'
-  compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
-  implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-  implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'com.zaxxer:HikariCP:5.1.0'
+	implementation 'org.mybatis:mybatis:3.5.17'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	implementation 'com.google.code.gson:gson:2.11.0'
+	compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

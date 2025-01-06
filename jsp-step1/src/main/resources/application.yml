@@ -4,3 +4,16 @@ spring:
   output:
     ansi:
       enabled: always
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:orcl11
+    username: scott
+    password: tiger
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 5000
+      validation-timeout: 2000
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      auto-commit: true
+      pool-name: oraPool

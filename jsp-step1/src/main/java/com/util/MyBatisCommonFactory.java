@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import lombok.extern.log4j.Log4j2;
 
+//아래 클래스는 스프링 프레임 워크로부터 객체에 대한 라이프싸이클을 관리받지 않는 프레임워크
 @Log4j2
 public class MyBatisCommonFactory {
 	public SqlSessionFactory sqlSessionFactory = null;
