@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="development">
+		<environment id="development">
+		<transactionManager type="JDBC"/>
+		<dataSource type="POOLED">
+			<property name="driver"
+				value="oracle.jdbc.OracleDriver" />
+			<property name="url"
+				value="jdbc:oracle:thin:@localhost:1521:orcl11" />
+			<property name="username" value="scott" />
+			<property name="password" value="tiger" />
+		</dataSource>
+		</environment>
+		<environment id="development2">
+		<transactionManager type="JDBC"/>
+		<dataSource type="POOLED">
+		<property name="driver" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/webdb" />
+		<property name="username" value="root" />
+		<property name="password" value="abcd1234" />
+		</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+	<!-- 
+	업무에 따라 관리할 쿼리문을 담은 xml문서의 물리적인 위치와 파일명을 등록할것.
+	-->
+		<mapper resource="com/mapper/test.xml" />
+		<mapper resource="com/mapper/board.xml" />
+	</mappers>
+</configuration>
