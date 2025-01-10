@@ -1,5 +1,7 @@
 server:
   port: 8000
+  tomcat :
+    additional-tld-skip-patterns: "*.jar"
 spring:
   output:
     ansi:

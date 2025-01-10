@@ -1,0 +1,19 @@
+{
+  "row": {
+    "b_title": "글제목1",
+    "b_content": "글내용1",
+    "b_hit": 15
+  },
+  "comment": [
+    {
+      "bc_comment": "감사합니다.",
+      "bc_date": "2025-01-03",
+      "email": "test@hot.com"
+    },
+    {
+      "bc_comment": "좋은 정보를 공유하셨습니다.",
+      "bc_date": "2025-01-04",
+      "email": "kiwi@hot.com"
+    }
+  ]
+}

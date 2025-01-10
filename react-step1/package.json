@@ -1,0 +1,67 @@
+{
+  "name": "react-step1",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@fullcalendar/bootstrap5": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/google-calendar": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/list": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/resource-timeline": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.8",
+    "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.7",
+    "firebase": "^11.1.0",
+    "http-proxy-middleware": "^3.0.3",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.46",
+    "nodemon": "^3.1.9",
+    "quill-image-resize-module-react": "^3.0.0",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^18.3.1",
+    "react-quill": "^2.0.0",
+    "react-quill-new": "^3.3.3",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.0.2",
+    "react-router-dom": "^7.0.2",
+    "react-scripts": "5.0.1",
+    "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
+    "styled-components": "6.1.13",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
