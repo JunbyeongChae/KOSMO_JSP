@@ -10,11 +10,12 @@ import com.example.demo.dao.ReBoardDao;
 
 @Service
 public class ReBoardLogic {
-  @Autowired
-  private ReBoardDao reBoardDao = null;
-  public List<Map<String, Object>> boardList(){
-    List<Map<String, Object>> bList = null;
-    bList = reBoardDao.boardList();
-    return bList;
-  }
+    @Autowired
+    private ReBoardDao reboardDao = null;
+    public List<Map<String, Object>> boardList() {
+        List<Map<String, Object>> bList = null;
+        bList = reboardDao.boardList();
+        return bList;
+    }
+    
 }

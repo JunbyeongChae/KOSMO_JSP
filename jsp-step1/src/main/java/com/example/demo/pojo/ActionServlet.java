@@ -55,11 +55,24 @@ public class ActionServlet extends HttpServlet{
         //req는 저장소역할 - 배열의 주소번지 저장. BoardController에서 사용할 수 있다.
         req.setAttribute("upmu", upmu);//결과적으로 얕은복사됨
         //웹서비스에 필요한 request와 response객체는 ActionServlet으로 부터 주입 받는다.
+        log.info("58");
         BoardController boardController = new BoardController();
-        try{
-          boardController.execute(req, res);
-        }catch(Exception e){
-          e.printStackTrace();
+        log.info("60");
+        try {
+            //execute메소드의 선언에서 예외처리를 직접하지 않고 나를 호출한 곳에서 하시오
+            //라는 의미로 throws하였다. 예러발생함. -> 예외처리를 더 이상 미룰 수 없으니 네가 try..catch추가하고 
+            //그 안에서 메소드 호출을 하면 된다.
+            log.info("execute before...");
+            String result = boardController.execute(req, res);
+            log.info("execute after....");
+            String pageMove[] = null;
+            pageMove = result.split(":");
+            for(int i=0;i < pageMove.length; i++){
+              log.info("pageMove[" + i + "]=" + pageMove[i]);
+            }//end of for
+            
+        } catch (Exception e) {
+            log.info(e.toString());//예외가 발생하면 예외이름을 출력하시오. - 이름으로 예외를 조회, 검색
         }
         //upmu[1] -> OrderController, BoardController, NoticeController, MemberController
         //upmu[2] -> boardList.ko.jsp -> ko는 빼고 .jsp붙여야 하므로 배열에 담을 때 ko는 제거 할것.

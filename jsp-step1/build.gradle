@@ -34,8 +34,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-  implementation 'com.oracle.database.nls:orai18n:23.6.0.24.10'
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+	implementation 'com.oracle.database.nls:orai18n:23.6.0.24.10'
+	// https://mvnrepository.com/artifact/com.oracle.database.nls/orai18n
+	//implementation 'com.oracle.database.nls:orai18n:19.3.0.0'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

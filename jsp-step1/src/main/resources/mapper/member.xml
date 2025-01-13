@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.MemberMapper">
+	<select id="memberList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT email, mem_pw, nickname,  zonecode, mem_addr, mem_addr2, reg_date
+		   FROM react_member
+	</select>
+</mapper>

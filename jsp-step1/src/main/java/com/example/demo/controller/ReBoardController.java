@@ -21,17 +21,18 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/reboard/*") //http://localhost:8000/reboard/boardList
 public class ReBoardController {
     @Autowired
-    private ReBoardLogic reBoardLogic= null;
+    private ReBoardLogic reBoardLogic = null;
     @GetMapping("boardList")
     //public String boardList(HttpServletResponse res){
+    //@query - select b_no, b_title, b_writer, b_content from react_board
     public String boardList(){
         log.info("boardList");
-        List<Map<String, Object>> bList = null;
+        List<Map<String,Object>> bList = null;
         bList = reBoardLogic.boardList();
         //return "forward:list.jsp";
         //스프링은 모든 메소드에 URL이름을 매핑할 수 있고(@RequestMapping, @GetMapping, @PostMapping, @PutMapping, @DeleteMapping)
         //res.sendRedirect("list.jsp")
-        return "redirect:list.jsp";
+        return "forward:list.jsp";
     }
     //수정,입력,삭제는 반환값이 int이다.(0이면 실패, 1이면 성공)
     //커밋과 롤백의 대상

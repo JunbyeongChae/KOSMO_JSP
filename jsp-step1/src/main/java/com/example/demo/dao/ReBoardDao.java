@@ -8,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-//@Repository
 @Service
+//@Repository
 public class ReBoardDao {
-  @Autowired
-  private SqlSessionTemplate sqlSessionTemplate = null;
-  public List<Map<String, Object>> boardList() {
-    List<Map<String, Object>> bList = null;
-    sqlSessionTemplate.selectList("boardList", null);
-    return bList;
-  }
-
-
+    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate = null;
+    public List<Map<String, Object>> boardList() {
+        List<Map<String, Object>> bList = null;
+        sqlSessionTemplate.selectList("boardList", null);
+        return bList;
+    }
+    
 }

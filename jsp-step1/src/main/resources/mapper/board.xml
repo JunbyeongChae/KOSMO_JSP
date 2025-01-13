@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.BoardMapper">
+	<insert id="boardInsert" parameterType="map">
+		INSERT INTO react_board (b_no, b_title, email, b_content, b_hit, b_date, b_file)
+		VALUES (SEQ_REACTBOARD_NO.NEXTVAL, #{b_title}, #{email}, #{b_content}, 0, to_char(sysdate, 'YYYY-MM-DD'), #{b_file})
+	</insert>
+    <delete id="boardDelete" parameterType="map">
+        DELETE FROM react_board WHERE b_no = #{value}
+    </delete>
+    <update id="boardUpdate" parameterType="map">
+        UPDATE react_board
+               SET b_title = #{b_title}
+                     ,email = #{email}
+                     ,b_content = #{b_content}
+                     ,b_file = #{b_file}
+        WHERE b_no = #{b_no}
+    </update>
+	<select id="boardList" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT rb.b_no, rb.b_title, rb.b_content, rb.b_hit, rb.b_date, rm.nickname
+		FROM react_board rb, react_member rm  
+		WHERE rb.email = rm.email
+		<!--
+			Map<String,Object> pmap = new HashMap<>();
+			pmap.put("cb_search", "b_title or b_content or nickname")
+			pmap.put("keyword", keyword)
+		-->
+		<if test='cb_search!=null and cb_search.equals("b_title")'>
+			AND rb.b_title LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test='cb_search!=null and cb_search.equals("b_content")'>
+			AND rb.b_content LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test='cb_search!=null and cb_search.equals("nickname")'>
+			AND rm.nickname LIKE '%'||#{keyword}||'%'
+		</if>
+	</select>
+
+<!--=========================[[ 댓글 처리 SQL ]] ========================-->
+
+<select id="commentList" parameterType="map" resultType="map">
+	SELECT bc_no, bc_comment, bc_date, b_no
+	  FROM react_board_comment
+</select>
+<insert id="commentInsert" parameterType="map">
+	INSERT into react_board_comment(bc_no, bc_comment, email, bc_date, b_no)
+	VALUES(SEQ_REACTBOARDCOMMENT.nextval, #{bc_comment}, #{email}, to_char(sysdate, 'YYYY-MM-DD'), #{b_no})
+</insert>
+<update id="commentUpdate" parameterType="map">
+	UPDATE react_board_comment
+	       SET bc_comment = #{bc_comment}
+		          ,bc_date = to_char(sysdate, 'YYYY-MM-DD')
+	WHERE bc_no = #{bc_no}
+</update>
+<delete id="commentDelete" parameterType="int">
+	DELETE FROM react_board_comment
+	 WHERE bc_no = #{value}
+</delete>
+<!--=========================[[ 댓글 처리 SQL ]] ========================-->
+
+</mapper>
