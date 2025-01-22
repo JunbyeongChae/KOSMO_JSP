@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.util.HashMapBinder;
 
 @Log4j2
 public class BoardController implements Controller{
@@ -48,13 +49,17 @@ public class BoardController implements Controller{
             //주소번지. 메소드이름(싱글톤)
             //메소드 선언이 아직 안되어 있다. - 메소드 선언을 한다는건 리턴타입과 파라미터결정하는일임
             //List<Map<String,Object>> bList = boardLogic.boardList();
-            return "forward:list.jsp";
+            return "forward:/board/list.jsp";
         }
         //글 등록하기 구현
         else if("boardInsert".equals(upmu[1])){
-            //메소드 호출
-            //주소번지. 메소드이름
-            //int result = boardLogic.boardInsert();
+          log.info("boardInsert");
+          Map<String, Object> pmap = new HashMap<>();
+          log.info("before"+pmap);
+          HashMapBinder hmb = new HashMapBinder(req);
+          hmb.bind(pmap);
+          //hmb.bindPost(pmap);
+          log.info("after"+pmap);
         }
         //글 수정하기 구현
         else if("boardUpdate".equals(upmu[1])){

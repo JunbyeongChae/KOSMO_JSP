@@ -2,6 +2,9 @@ package com.example.demo.pojo;
 
 import java.io.IOException;
 
+import org.apache.catalina.connector.Request;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -68,9 +71,20 @@ public class ActionServlet extends HttpServlet{
             String pageMove[] = null;
             pageMove = result.split(":");
             for(int i=0;i < pageMove.length; i++){
-              log.info("pageMove[" + i + "]=" + pageMove[i]);
+              log.info("pageMove["+i+"]=" + pageMove[i]);
             }//end of for
             
+            //응답페이지에대한 정보를 갖고있는가?
+            if(pageMove!=null){//redirect:boardList.ko.jsp
+              if("redirect".equals(pageMove[0])){
+                res.sendRedirect(pageMove[1]);
+              }
+              else if("forward".equals(pageMove[0])){
+                RequestDispatcher view = req.getRequestDispatcher(pageMove[1]);
+                view.forward(req, res);
+              }
+            }///////////////////////[ViewResolver]//////////////////////////////
+
         } catch (Exception e) {
             log.info(e.toString());//예외가 발생하면 예외이름을 출력하시오. - 이름으로 예외를 조회, 검색
         }

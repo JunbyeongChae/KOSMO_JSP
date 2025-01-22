@@ -7,16 +7,16 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:orcl11
-    username: scott
-    password: tiger
-    driver-class-name: oracle.jdbc.OracleDriver
     hikari:
-      maximum-pool-size: 10
-      connection-timeout: 5000
-      validation-timeout: 2000
-      minimum-idle: 10
-      idle-timeout: 600000
-      max-lifetime: 1800000
+      jdbc-url: jdbc:oracle:thin:@localhost:1521/orcl11
+      username: scott
+      password: tiger
+      driver-class-name: oracle.jdbc.OracleDriver
+      connection-timeout: 20000
+      validation-timeout: 3000
+      minimum-idle: 5
+      maximum-pool-size: 12
+      idle-timeout: 300000
+      max-lifetime: 1200000
       auto-commit: true
       pool-name: oraPool

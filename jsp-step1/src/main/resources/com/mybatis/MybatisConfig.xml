@@ -26,8 +26,9 @@
 	<mappers>
 	<!-- 
 	업무에 따라 관리할 쿼리문을 담은 xml문서의 물리적인 위치와 파일명을 등록할것.
-	 -->
+	-->
 		<mapper resource="mapper/test.xml" />
 		<mapper resource="mapper/board.xml" />
+    <mapper resource="mapper/member.xml" />
 	</mappers>
 </configuration>

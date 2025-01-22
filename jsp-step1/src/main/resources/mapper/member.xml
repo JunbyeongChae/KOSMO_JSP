@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.MemberMapper">
+  <select id='login' parameterType='java.util.Map' resultType='map'>
+    SELECT MEM_EMAIL, MEM_NICK
+      FROM MEMBER250120 
+      WHERE MEM_EMAIL = #{MEM_EMAIL}
+      AND MEM_PW = #{mem_pw}
+  </select>
 	<select id="memberList" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT email, mem_pw, nickname,  zonecode, mem_addr, mem_addr2, reg_date
-		   FROM react_member
+		SELECT * 
+    FROM MEMBER250120
+    <trim prefix="WHERE" prefixOverrides="AND">
+        <if test="MEM_UID != null"> AND MEM_UID = #{MEM_UID} </if>
+        <if test="MEM_EMAIL != null"> AND MEM_EMAIL = #{MEM_EMAIL} </if>
+        <if test="MEM_NICKNAME != null"> AND MEM_NICKNAME = #{MEM_NICKNAME} </if>
+        <if test="MEM_NAME != null"> AND MEM_NAME = #{MEM_NAME} </if>
+        <if test="MEM_NO != null"> AND MEM_NO = #{MEM_NO} </if>
+        <if test="MEM_TEL != null"> AND MEM_TEL = #{MEM_TEL} </if>
+    </trim>
 	</select>
 </mapper>
