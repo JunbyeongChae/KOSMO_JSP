@@ -24,7 +24,7 @@
                 out.print(c_name);
             }
         }//end of for
-    }//////end of if
+    }//end of if
 %>
 <button onclick="cookieDelete(event)">쿠키삭제</button>
 <script>

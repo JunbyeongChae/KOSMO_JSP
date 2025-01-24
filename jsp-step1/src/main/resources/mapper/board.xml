@@ -10,10 +10,10 @@
     </delete>
     <update id="boardUpdate" parameterType="map">
         UPDATE react_board
-          SET b_title = #{b_title}
-              ,email = #{email}
-              ,b_content = #{b_content}
-              ,b_file = #{b_file}
+               SET b_title = #{b_title}
+                     ,email = #{email}
+                     ,b_content = #{b_content}
+                     ,b_file = #{b_file}
         WHERE b_no = #{b_no}
     </update>
 	<select id="boardList" parameterType="java.util.Map" resultType="java.util.Map">
@@ -44,17 +44,17 @@
 </select>
 <insert id="commentInsert" parameterType="map">
 	INSERT into react_board_comment(bc_no, bc_comment, email, bc_date, b_no)
-	  VALUES(SEQ_REACTBOARDCOMMENT.nextval, #{bc_comment}, #{email}, to_char(sysdate, 'YYYY-MM-DD'), #{b_no})
+	VALUES(SEQ_REACTBOARDCOMMENT.nextval, #{bc_comment}, #{email}, to_char(sysdate, 'YYYY-MM-DD'), #{b_no})
 </insert>
 <update id="commentUpdate" parameterType="map">
 	UPDATE react_board_comment
-	  SET bc_comment = #{bc_comment}
-		    ,bc_date = to_char(sysdate, 'YYYY-MM-DD')
+	       SET bc_comment = #{bc_comment}
+		          ,bc_date = to_char(sysdate, 'YYYY-MM-DD')
 	WHERE bc_no = #{bc_no}
 </update>
 <delete id="commentDelete" parameterType="int">
 	DELETE FROM react_board_comment
-	  WHERE bc_no = #{value}
+	 WHERE bc_no = #{value}
 </delete>
 <!--=========================[[ 댓글 처리 SQL ]] ========================-->
 

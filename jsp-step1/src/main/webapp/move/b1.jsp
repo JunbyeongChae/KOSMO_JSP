@@ -5,7 +5,7 @@
     <title>b1.jsp</title>
 </head>
 <body>
-    <h1>forward to b1.jsp</h1>
+    <h1>b1.jsp페이지로 forward되었다.</h1>
     <p>Content</p>
 </body>
 </html>

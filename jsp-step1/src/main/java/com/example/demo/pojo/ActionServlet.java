@@ -2,8 +2,6 @@ package com.example.demo.pojo;
 
 import java.io.IOException;
 
-import org.apache.catalina.connector.Request;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -66,24 +64,45 @@ public class ActionServlet extends HttpServlet{
             //라는 의미로 throws하였다. 예러발생함. -> 예외처리를 더 이상 미룰 수 없으니 네가 try..catch추가하고 
             //그 안에서 메소드 호출을 하면 된다.
             log.info("execute before...");
+            //프론트에서 백엔드로 내려갈 때
+            //리턴값으로 받는 정보가 페이지 이름 과 redirect인지 forward인지 에 대한 정보가 들어있다.
+            //return "redirect:list.jsp"
+            //return "forward:list.jsp"
+            //최초 요청을 ActionServlet이 받으면 톰캣 컨테이너로 부터 request, response객체를 주입 받음.
+            //주입을 받는 다는 말은 개발자가 직접 인스턴스화 하지 않고 바로 사용할 수 있다.
+            //NullPointerException이 발생하지 않습니다. -> 그래서 ActionServlet을 만들 때 HttpServlet을 상속 받았다.
+            //표준 메소드는 doGet, doPost, doPut, doDelete가 맞지만  어차피 개발자인 나는 모두 처리를 해줘야  한다.
+            //그래서 메소드의 이름을 doService로 변경하고 4가지 요청이 모두 한 메소드로 연결되도록 설계하였다.
+            //doGet, doPost, doPut, doDelete는 모두 리턴 타입이 void이다.
+            //질문:  모두 리턴타입이 void인데 어떻게 응답페이지를 호출해서 응답페이지가 나가는 걸까요?
             String result = boardController.execute(req, res);
+            //백엔드에서 다시 프론트로 올라올 때
             log.info("execute after....");
+            //아래 배열에는 응답페이지 처리에 필요한 정보 담김
+            //forward:list.jsp
             String pageMove[] = null;
+            //위에서 내려준 응답메시지에서 :기준으로 배열에 담음.
+            log.info("result : "+result); // forward:/board/list.jsp
             pageMove = result.split(":");
+            //pageMove[0] = forward저장됨
+            //pageMove[1] = /board/list.jsp저장됨.
             for(int i=0;i < pageMove.length; i++){
-              log.info("pageMove["+i+"]=" + pageMove[i]);
+                //
+                log.info("pageMove["+i+"] : "+pageMove[i]);
             }//end of for
-            
-            //응답페이지에대한 정보를 갖고있는가?
-            if(pageMove!=null){//redirect:boardList.ko.jsp
-              if("redirect".equals(pageMove[0])){
-                res.sendRedirect(pageMove[1]);
-              }
-              else if("forward".equals(pageMove[0])){
-                RequestDispatcher view = req.getRequestDispatcher(pageMove[1]);
-                view.forward(req, res);
-              }
-            }///////////////////////[ViewResolver]//////////////////////////////
+            //요청을 받아서 처리한 후 응답페이지 처리하기 - 공통부분(spring기준 - ViewResolver제공)
+            //응답페이지에 대한 정보를 가지고 있는거야?
+            if(pageMove !=null){
+                if("redirect".equals(pageMove[0])){
+                    res.sendRedirect(pageMove[1]);
+                }
+                else if("forward".equals(pageMove[0])){
+                    RequestDispatcher view = req.getRequestDispatcher(pageMove[1]);
+                    view.forward(req, res);
+                }
+            }
+            /////////////////////////// [ ViewResolver ] ///////////////////////////
+
 
         } catch (Exception e) {
             log.info(e.toString());//예외가 발생하면 예외이름을 출력하시오. - 이름으로 예외를 조회, 검색

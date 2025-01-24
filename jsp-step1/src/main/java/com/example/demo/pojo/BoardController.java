@@ -53,13 +53,16 @@ public class BoardController implements Controller{
         }
         //글 등록하기 구현
         else if("boardInsert".equals(upmu[1])){
-          log.info("boardInsert");
-          Map<String, Object> pmap = new HashMap<>();
-          log.info("before"+pmap);
-          HashMapBinder hmb = new HashMapBinder(req);
-          hmb.bind(pmap);
-          //hmb.bindPost(pmap);
-          log.info("after"+pmap);
+            log.info("boardInsert호출 성공");
+            Map<String,Object> pmap = new HashMap<>();
+            log.info("before : "+pmap);
+            HashMapBinder hmb = new HashMapBinder(req);
+            hmb.bind(pmap);//get방식일 때
+            //hmb.bindPost(pmap);//post방식일 때
+            log.info("after : "+pmap);
+            //메소드 호출
+            //주소번지. 메소드이름
+            //int result = boardLogic.boardInsert();
         }
         //글 수정하기 구현
         else if("boardUpdate".equals(upmu[1])){

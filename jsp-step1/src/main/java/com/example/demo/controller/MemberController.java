@@ -14,26 +14,26 @@ import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@RestController
-@RequestMapping("/member/*")
+@RestController //리액트 요청을 받아서 응답을 json포맷으로 내보내야 한다. 응답이 jsp로 나가지 않는 경우에 사용
+@RequestMapping("/member/*")//회원관리시 들어오는 요청은 member가 공통으로 들어있음.
 public class MemberController {
-  @Autowired
-  private MemberLogic memberLogic = null;
-  //로그인관련조회
-  //이메일로그인진행
-  //소셜로그인진행시 회원가입 유무를 체크하여 강제회원가입 유도시 사용
-  //소셜로그인 진행시 MEM_UID유무가 핵심조건
-  //닉네임중복검사할 때 이메일 중복검사 할 때
-  //POJO와의 가장 큰 차이점은 스프링코드 어디에서도 requst,respons흔적이 ㅇ벗다.
-  //스프링부트는 더이상 서블릿에 의존적이지 않은 프레임워크이다,
-  @GetMapping("memberList")
-  public String memberList(@RequestParam Map<String, Object> pmap) {
-    log.info("memberList");
-    log.info("pmap : " + pmap);
-    Object obj = memberLogic.memberList(pmap);
-    String result = null;
-    Gson g = new Gson();
-    result = g.toJson(obj);
-    return result;
-  }
+    @Autowired
+    private MemberLogic memberLogic = null;
+    //로그인관련 조회
+    //이메일 로그인 진행
+    //소셜로그인으로 진행시 회원가입 유무를 체크하여 강제 회원가입 유도할 때도 사용함.
+    //소셜로그인으로 진행시 MEM_UID 유무가 핵심조건
+    //닉네임 중복검사 할 때 , 이메일 중복검사 할 때
+    //POJO와의 가장 큰 차이점 중 하나로 스프링 코드 어디에서도 request, response흔적이 없다.
+    //스프링 부트는 더 이상 서블릿에 의존적이지 않은 프레임워크 이다.
+    @GetMapping("memberList")//클래스 선언 앞에 공통으로 member를 꺼내놓았고 앞뒤에 슬래쉬가 있어서 생략함
+    public String memberList(@RequestParam Map<String,Object> pMap){
+        log.info("memberList 호출");
+        log.info("사용자가 입력한 값 : "+ pMap);
+        Object obj = memberLogic.memberList(pMap);
+        String result = null;
+        Gson g = new Gson();
+        result = g.toJson(obj);
+        return result;
+    }
 }

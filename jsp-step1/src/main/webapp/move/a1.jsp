@@ -7,8 +7,8 @@
 <body>
     <h1>Heading</h1>
 <%
-  RequestDispatcher view = request.getRequestDispatcher("b1.jsp");
-  view.forward(request, response);
+    RequestDispatcher view = request.getRequestDispatcher("b1.jsp");
+    view.forward(request, response);
 %>
     <p>Content</p>
 </body>

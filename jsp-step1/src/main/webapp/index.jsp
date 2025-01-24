@@ -1,34 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-  Cookie cs[] = request.getCookies();
-  String cid = null;
-  if(cs !=null && cs.length !=0){
-    for(int i=0;i<cs.length;i++){
-      if("mem_nick".equals(cs[i].getName())){
-        cid = cs[i].getValue();
-      }
+    Cookie cs[] = request.getCookies();
+    String cemail = null;
+    if(cs !=null){
+        for(int i=0;i<cs.length;i++){
+            if("email".equals(cs[i].getName())){
+                cemail = cs[i].getValue();
+            }
+        }//end of for
+    }else{
+        cemail = "쿠키값 없음.";
     }
-  }else{
-    cid = "쿠키값 없음.";
-  }
-  
-  if(cid == null){
-    response.sendRedirect("./mycookie/loginFormGet.jsp");
-  }else{
-    out.print("Hello "+cid);
-  }
+    out.print(cemail);
+    if(cemail == null){//로그인을 하지 않았다면 로그인 페이지로 이동하기 처리
+        response.sendRedirect("./mycookie/loginFormGet.jsp");
+    }else{
+        out.print("쿠키값이 존재하면....");
+    }
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-  <div>
-    <button>
-      <a href="./mycookie/logout">로그아웃</a> 
-    </button>
-  </div>
+    <h1>Heading</h1>
+    <p>Content</p>
 </body>
 </html>
