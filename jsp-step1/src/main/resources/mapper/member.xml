@@ -9,7 +9,7 @@
 	</select>
 	<select id="memberList" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT mem_no, mem_uid, mem_email, mem_nickname, mem_status, mem_auth
-		  FROM member250120
+		   FROM member250120
 		<trim prefix="WHERE" prefixOverrides="AND">
 			<if test="MEM_UID!=null">AND MEM_UID = #{MEM_UID}</if>
 			<if test="MEM_EMAIL!=null">AND MEM_EMAIL = #{MEM_EMAIL}</if>
@@ -19,4 +19,16 @@
 			<if test="MEM_TEL!=null">AND MEM_TEL = #{MEM_TEL}</if>
 		</trim>
 	</select>
+	<insert id="memberInsert" parameterType="map">
+		INSERT INTO member250120(
+			MEM_NO, MEM_UID, MEM_PW, MEM_NAME, MEM_NICKNAME,  MEM_EMAIL, MEM_TEL 
+		   ,MEM_GENDER, MEM_BIRTHDAY, MEM_ADDR, MEM_ADDR_DTL, MEM_ZIPCODE
+		   ,MEM_STATUS, MEM_AUTH
+		)
+		VALUES(
+			SEQ_MEMBER250120_NO.nextval, #{MEM_UID}, #{MEM_PW}, #{MEM_NAME}, #{MEM_NICKNAME}
+		    , #{MEM_EMAIL}, #{MEM_TEL}, #{MEM_GENDER}, #{MEM_BIRTHDAY}, #{MEM_ADDR}, #{MEM_ADDR_DTL}
+			, #{MEM_ZIPCODE}, #{MEM_STATUS}, #{MEM_AUTH}
+		)
+	</insert>
 </mapper>

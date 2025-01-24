@@ -49,4 +49,16 @@ public class MemberDao {
         }
         return list;
     }//end of login
+
+    public int memberInsert(Map<String, Object> pMap) {
+        log.info("memberInsert");
+        int result = -1;
+        try {
+            result = sqlSessionTemplate.insert("memberInsert", pMap);
+            log.info(result);//0이면 입력 실패, 1이면 입력 성공
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return result;
+    }
 }

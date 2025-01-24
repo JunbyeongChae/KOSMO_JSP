@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +37,20 @@ public class MemberController {
         Gson g = new Gson();
         result = g.toJson(obj);
         return result;
-    }
+    }//end of memberList
+    /*************************************************************************************************
+     * 회원가입 구현 - POST
+     * 1) form전송  - @RequestParam
+     * 2) js object전송 - @RequestBody
+     * @param pMap
+     * @return
+     *************************************************************************************************/
+    @PostMapping("memberInsert")
+    public int memberInsert(@RequestBody Map<String,Object> pMap){
+        log.info("memberInsert");
+        log.info(pMap);
+        int result = -1;
+        result = memberLogic.memberInsert(pMap);
+        return result;
+    }//end of memberInsert
 }

@@ -35,14 +35,24 @@ public class MemberLogic {
         //type이 auth이면서 list.size!=0
         Map<String,Object> rmap = new HashMap<>();
         List<Map<String,Object>> list = null; 
-        list = memberDao.memberList(pMap);
-        log.info("list.size() : " + list.size());//
+        list = memberDao.memberList(pMap);//myBatis대신 객체를 주입해줌. NullPointerExceptionq발생 여부는 어떤가?
+        log.info(list==null);//
+        //위 문장을 실행했을 때 조회결과가 없으면 list.size()는 0일 것이다.
+        //만일 myBatis가 조회결과가 없을 땐 객체생성을 하지 않는다. 라고 가정한다.
+        //아래코드는 NullPointerException이 발동한다. 
+        //확인해 보니 myBatis는 조회결과가 없더라도 객체생성을 함. 그래서 0이 출력되었다.
+        if(list !=null){
+            log.info("list.size() : " + list.size());//0이 출력이된다면 mybatis는 조회결과가 없는 경우에도 객체생성은 해준다.
+        }
         Object obj = null;
         //파라미터로 받아온 키 중에서 type이 존재하니?
         //type이 overlap이면 중복검사 - 이메일중복검사, 닉네임중복검사 : int
         if(pMap.containsKey("type")){
             if("overlap".equals(pMap.get("type"))){//중복검사일 때
-                obj = list.size();
+                //여기서 사용된 size()는 전체범위 처리하는 함수 count 가 아니다. 조회결과에 대한 로우 수이다.
+                //CRUD -> 삭제 일괄처리 -> 부분범위 처리하기 -> 동적 쿼리 처리하기 
+                obj = list.size();//count함수를 제공하는 건 오라클이다. 자바가 아니다. - 방어코드 - 해봤다.
+                //obj는 0이거나 1이다.
             }else if(("auth".equals(pMap.get("type").toString())) && (list.size()!=0)){//타입이 auth일 때 - 소셜로그인 한 거지 - 강제 회원가입
                 rmap.put("MEM_UID", list.get(0).get("MEM_UID"));
                 rmap.put("MEM_EMAIL", list.get(0).get("MEM_EMAIL"));
@@ -66,4 +76,9 @@ public class MemberLogic {
         }
         return obj;
     }//end of memberList
+    public int memberInsert(Map<String, Object> pMap) {
+        int result =-1;
+        result = memberDao.memberInsert(pMap);
+        return result;
+    }//end of memberInsert
 }//end of MemberLogic
